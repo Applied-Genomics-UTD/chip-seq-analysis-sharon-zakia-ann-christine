@@ -1,5 +1,5 @@
 process amp {
-    conda 'bioconductor-chipseeker bioconductor-txdb.hsapiens.ucsc.hg19.knowngene bioconductor-rtracklayer bioconductor-org.hs.eg.db'
+    conda './envs/annotate_peaks.yml'
 
     input:
     path H3K27ac
@@ -7,12 +7,10 @@ process amp {
 
     output:
     path "YAP1_peaks_anno.txt"
-    //stdout
-    //path "H3K27ac_filtered_peaks.bed", emit: H3K27ac
-    //path "YAP1_filtered_peaks.bed", emit: YAP1
 
     shell:
     '''
+    #!/usr/bin/env Rscript
     library(ChIPseeker)
     library(TxDb.Hsapiens.UCSC.hg19.knownGene)
     library(rtracklayer)
