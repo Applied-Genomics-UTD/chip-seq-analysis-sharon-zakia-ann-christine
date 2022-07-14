@@ -3,3 +3,7 @@ work/
 data/
 results/
 test-run/
+bam/
+ethanol/
+null/
+refs/
