@@ -6,7 +6,7 @@ params.YAP1_peaks = file("/scratch/applied-genomics/chipseq/ming-results/bwa/mer
 
 include { cps } from './modules/cps.nf' 
 include { yoh } from './modules/yoh.nf'
-
+include { amp } from './modules/amp.nf'
 
 workflow{
     cps(
@@ -16,4 +16,8 @@ workflow{
         cps.out.H3K27ac,
         cps.out.YAP1
     ) | view
+    amp( 
+    params.H3K27ac_peaks,
+    params.YAP1_peaks
+    )
 }
