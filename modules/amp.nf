@@ -1,5 +1,6 @@
 process amp {
     conda './envs/annotate_peaks.yml'
+    publishDir 'results/annotate_peaks' 
 
     input:
     path H3K27ac
@@ -7,6 +8,7 @@ process amp {
 
     output:
     path "YAP1_peaks_anno.txt"
+    path "Rplots.pdf"
 
     shell:
     '''
@@ -25,7 +27,7 @@ process amp {
     YAP1_anno<- annotatePeak(YAP1, tssRegion=c(-3000, 3000), TxDb=txdb, level = "gene", annoDb="org.Hs.eg.db", sameStrand = FALSE, ignoreOverlap = FALSE, overlap = "TSS")
     #some nice visualization you can do
     plotAnnoPie(YAP1_anno)
-    upsetplot(YAP1_anno, vennpie=TRUE)
+    upsetplot(YAP1_anno, vennpie=FALSE)
     
     # check the annotation
     head(as.data.frame(YAP1_anno))
