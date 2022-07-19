@@ -1,0 +1,10 @@
+name: annotate_peaks
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconductor-chipseeker 
+  - bioconductor-txdb.hsapiens.ucsc.hg19.knowngene 
+  - bioconductor-rtracklayer 
+  - bioconductor-org.hs.eg.db

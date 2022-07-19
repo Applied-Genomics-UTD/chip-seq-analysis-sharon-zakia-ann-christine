@@ -1,0 +1,69 @@
+#!bin/bash
+
+#How to create nf core
+#First
+curl -fsSL get.nextflow.io | bash
+mv nextflow ~/bin
+
+#Activate singularity
+ml load singularity
+
+#Run it
+nextflow run nf-core/chipseq -profile test,singularity -r dev --outdir test-run
+
+#Update Gitignore
+.nextflow*
+work/
+data/
+results/
+testrun/
+
+#To check that we have a results folder
+ll test-run/
+ll test-run/bwa/
+
+#Create nfparams.json file
+code nfparams.json
+
+#Paste the following in that file
+# {
+    "input": "samplesheet.csv",
+    "read_length": 50,
+    "outdir": "ming-results",
+    "email": "sak210000@utdallas.edu",
+    "genome": "hg19",
+    "skip_peak_annotation": true
+}
+
+#create a sample sheet
+touch samplesheet.csv
+
+#Start screen which is a screen manager
+login$ screen
+
+#By doing the following for the screen
+# Start a new screen session:
+screen
+
+# Start a new named screen session:
+screen -S session_name
+
+# Reattach to an open screen:
+screen -r session_name
+
+# Detach from inside a screen:
+    Ctrl + A, D
+
+# Kill the current screen session:
+    Ctrl + A, K
+
+#Launching pipeline
+nextflow run nf-core/chipseq -r dev -profile singularity -params-file nfparams.json
+
+#Analyzing data from ming tang 
+
+#First check file
+params.blacklist_bed = https://www.encodeproject.org/files/ENCFF001TDO/@@download/ENCFF001TDO.bed.gz
+
+#See MAIN.NF FILE
+

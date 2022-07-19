@@ -1,0 +1,8 @@
+{
+    "input": "samplesheet.csv",
+    "read_length": 50,
+    "outdir": "ming-results",
+    "email": "sak210000@utdallas.edu",
+    "genome": "hg19",
+    "skip_peak_annotation": true
+}
